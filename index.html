@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Podcast App</title>
+    <link rel="icon" href="./assets/title-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Orbitron:wght@400..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script type="module" src="main.js" defer></script>
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="app-identity">
+        <img
+          src="./assets/podcast-logo.png"
+          alt="A picture of the Podcast logo"
+          class="app-logo"
+        />
+        <h1 class="app-name">CodeCast</h1>
+      </div>
+
+      <div class="user-section">
+        <img
+          src="./assets/search-icon.png"
+          alt="A picture of a search icon"
+          class="search-icon"
+        />
+        <img
+          src="./assets/user-profile.png"
+          alt="A user profile picture"
+          class="profile-pic"
+        />
+      </div>
+    </header>
+    <main>
+      <section class="filter-area">
+        <label for="genre-options">Filter by:</label>
+        <select name="genre" id="genre-options">
+          <option value="All Genres">All Genres</option>
+        </select>
+        <select name="recently-updated" id="most-recent">
+          <option value="recent">Recently updated</option>
+          <option value="popular">Most popular</option>
+          <option value="newest">Newest</option>
+        </select>
+      </section>
+
+      <section class="podcast-section">
+        <div class="podcast-grid" id="pod-grid"></div>
+      </section>
+      <div class="overlay" id="modal-overlay"></div>
+    </main>
+  </body>
+</html>
