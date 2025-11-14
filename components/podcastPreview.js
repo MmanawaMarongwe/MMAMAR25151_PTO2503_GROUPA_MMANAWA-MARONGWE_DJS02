@@ -42,9 +42,15 @@ class PodcastPreview extends HTMLElement {
         h4 {
           font-weight: 600;
         }
-          .seasons-text {
-  color: var(--accent);
-}
+
+        .seasons-text {
+          color: var(--accent);
+        }
+
+        .text-muted {
+          color: var(--text-muted);
+          font-size: 14px;
+        }
 
       </style>
         <div class="card">
@@ -53,6 +59,7 @@ class PodcastPreview extends HTMLElement {
             <h4 id="title"></h4>
             <p id="seasons" class="seasons-text"></p>
             <div id="genres" class="genre-tags"></div>
+            <p id="updated" class="text-muted"></p>
           </div>
         </div>
     `;
@@ -64,11 +71,13 @@ class PodcastPreview extends HTMLElement {
     const coverFromAttribute = this.getAttribute("cover") || "";
     const seasonsFromAttribute = this.getAttribute("seasons" || "");
     const genresFromAttribute = this.getAttribute("genres" || "");
+    const dateFromAttribute = this.getAttribute("updated" || "");
 
     const titleEl = this.shadowRoot.getElementById("title");
     const coverEl = this.shadowRoot.getElementById("cover");
     const seasonsEl = this.shadowRoot.getElementById("seasons");
     const genresEl = this.shadowRoot.getElementById("genres");
+    const dateEl = this.shadowRoot.getElementById("updated");
 
     if (titleEl) {
       titleEl.textContent = titleFromAttribute;
@@ -87,6 +96,10 @@ class PodcastPreview extends HTMLElement {
       } else {
         seasonsEl.textContent = "";
       }
+    }
+
+    if (dateEl) {
+      dateEl.textContent = `Last Updated ${dateFromAttribute}`;
     }
   }
 }

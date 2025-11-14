@@ -1,5 +1,5 @@
 import { createOpt } from "./createOption.js";
-import { createCard } from "./createCard.js";
+import "./PodcastPreview.js";
 import { makePodcast } from "../utilities/podcastModel.js";
 import { renderModal } from "./renderModal.js";
 
@@ -25,23 +25,27 @@ export function createPodcastApp({ genres, podcasts, seasons, elements }) {
   });
 
   // Render each podcast
-  podcasts.forEach((podcast) => {
-    const pod = makePodcast(podcast, genres, seasons);
+  // build one card per podcast
+  podcasts.forEach((podcastData) => {
+    // 1️⃣ use the factory to build a view-model
+    const pod = makePodcast(podcastData, genres, seasons);
 
-    const podcastCard = createCard({
-      cover: pod.image,
-      name: pod.title,
-      seasons: pod.seasons,
-      genreTags: pod.genreNames(),
-      lastUpdate: pod.formattedUpdatedAt(),
-    });
+    // 2️⃣ create the custom element
+    const card = document.createElement("podcast-preview");
+
+    // 3️⃣ feed custom element data from the factory result
+    card.setAttribute("title", pod.title);
+    card.setAttribute("cover", pod.image);
+    card.setAttribute("seasons", pod.seasons);
+    card.setAttribute("updated", pod.formattedUpdatedAt());
+    // card.genres = pod.genreNames();
 
     // Attach event listener to open modal
-    podcastCard.addEventListener("click", () => {
+    card.addEventListener("click", () => {
       renderModal(pod, modalContainer);
     });
     // Add to grid
-    podGrid.appendChild(podcastCard);
+    podGrid.appendChild(card);
   });
 
   return {
