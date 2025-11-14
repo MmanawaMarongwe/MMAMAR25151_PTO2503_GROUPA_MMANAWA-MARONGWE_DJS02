@@ -38,7 +38,7 @@ export function makePodcast(podcastData, genres, seasons) {
     formattedUpdatedAt() {
       const updatedValue = podcastData.updated;
       if (!updatedValue) return "—";
-
+      const dt = new Date(updatedValue);
       if (isNaN(dt)) return "—";
 
       return new Intl.DateTimeFormat("en-GB", {
