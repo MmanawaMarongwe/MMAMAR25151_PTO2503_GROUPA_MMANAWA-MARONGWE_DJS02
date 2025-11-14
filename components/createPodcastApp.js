@@ -1,6 +1,6 @@
 import { createOpt } from "./createOption.js";
 import { createCard } from "./createCard.js";
-import { makePodcast } from "./makePodcast.js";
+import { makePodcast } from "../utilities/podcastModel.js";
 import { renderModal } from "./renderModal.js";
 
 /**
