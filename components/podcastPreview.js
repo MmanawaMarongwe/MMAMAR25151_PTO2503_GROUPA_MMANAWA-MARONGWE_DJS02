@@ -8,6 +8,15 @@ class PodcastPreview extends HTMLElement {
     // Basic podcast structure
     this.shadowRoot.innerHTML = `
       <style>
+        :root {
+          --bg: linear-gradient(180deg, #0d1117 0%, #161b22 100%);
+          --card-bg: linear-gradient(180deg, #1a1f27 0%, #202833 100%);
+          --text: #ffffff;
+          --text-muted: #9ba1ae;
+          --border-line: rgba(128, 128, 128, 0.278);
+          --accent: #ff9f3f;
+        }
+
         :host {
           display: block;
           background: var(--card-bg, #1a1f27);
@@ -19,7 +28,6 @@ class PodcastPreview extends HTMLElement {
         }
 
         .card {
-          background: var(--card-bg);
           border-radius: 16px;
           transition: all 0.3s ease-in-out;
           }
@@ -31,18 +39,22 @@ class PodcastPreview extends HTMLElement {
           border: var(--text-muted) 0.5px solid;
         }
         
-        h3 {
-          margin: 0;
-          font-size: 1rem;
+        h4 {
           font-weight: 600;
         }
+          .seasons-text {
+  color: var(--accent);
+}
 
       </style>
-        <article class="card">
-          <img id="cover" class="pod-cover">
-          <h3 id="title"></h3>
-        </article>
-    
+        <div class="card">
+        <img id="cover" class="pod-cover" alt="">
+          <div>
+            <h4 id="title"></h4>
+            <p id="seasons" class="seasons-text"></p>
+            <div id="genres" class="genre-tags"></div>
+          </div>
+        </div>
     `;
   }
 
@@ -50,9 +62,13 @@ class PodcastPreview extends HTMLElement {
   connectedCallback() {
     const titleFromAttribute = this.getAttribute("title") || "";
     const coverFromAttribute = this.getAttribute("cover") || "";
+    const seasonsFromAttribute = this.getAttribute("seasons" || "");
+    const genresFromAttribute = this.getAttribute("genres" || "");
 
     const titleEl = this.shadowRoot.getElementById("title");
     const coverEl = this.shadowRoot.getElementById("cover");
+    const seasonsEl = this.shadowRoot.getElementById("seasons");
+    const genresEl = this.shadowRoot.getElementById("genres");
 
     if (titleEl) {
       titleEl.textContent = titleFromAttribute;
@@ -63,6 +79,14 @@ class PodcastPreview extends HTMLElement {
       coverEl.alt = titleFromAttribute
         ? `${titleFromAttribute} cover`
         : "Podcast cover";
+    }
+
+    if (seasonsEl) {
+      if (seasonsFromAttribute) {
+        seasonsEl.textContent = `♡ ${seasonsFromAttribute} seasons`;
+      } else {
+        seasonsEl.textContent = "";
+      }
     }
   }
 }

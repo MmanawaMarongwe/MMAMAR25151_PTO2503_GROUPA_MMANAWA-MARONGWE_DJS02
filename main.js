@@ -20,6 +20,8 @@ const demo = document.createElement("podcast-preview");
 // give it a title via attribute
 demo.setAttribute("title", testPodcast.title);
 demo.setAttribute("cover", testPodcast.image);
+demo.setAttribute("seasons", testPodcast.seasons);
+demo.setAttribute("genres", testPodcast.genres);
 // add it to the grid
 podGrid.prepend(demo);
 
