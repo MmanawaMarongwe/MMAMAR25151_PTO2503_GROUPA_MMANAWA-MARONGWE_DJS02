@@ -32,7 +32,7 @@ export function createPodcastApp({ genres, podcasts, seasons, elements }) {
 
     // 2️⃣ create the custom element
     const card = document.createElement("podcast-preview");
-
+    card.setAttribute("id", pod.id);
     // 3️⃣ feed custom element data from the factory result
     card.setAttribute("title", pod.title);
     card.setAttribute("cover", pod.image);
@@ -40,10 +40,6 @@ export function createPodcastApp({ genres, podcasts, seasons, elements }) {
     card.setAttribute("updated", pod.formattedUpdatedAt());
     card.setAttribute("genres", pod.genreNames());
 
-    // Attach event listener to open modal
-    card.addEventListener("click", () => {
-      renderModal(pod, modalContainer);
-    });
     // Add to grid
     podGrid.appendChild(card);
   });
@@ -51,6 +47,25 @@ export function createPodcastApp({ genres, podcasts, seasons, elements }) {
   return {
     init() {
       console.log("🎧 Podcast app initialized successfully!");
+      podGrid.addEventListener("podcast-select", (event) => {
+        console.log("🎧 podcast-select heard", event.detail); // debug
+
+        const selectedId = event.detail.id;
+        if (!selectedId) {
+          console.error("No id in podcast-select event");
+          return;
+        }
+
+        const podcastData = podcasts.find((p) => p.id === selectedId);
+        if (!podcastData) {
+          console.error("No podcast found for id:", selectedId);
+          return;
+        }
+
+        const modal = makePodcast(podcastData, genres, seasons);
+
+        renderModal(modal, modalContainer);
+      });
     },
   };
 }
