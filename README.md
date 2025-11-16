@@ -22,17 +22,32 @@ The rest of the app is structured with modular JavaScript, clean separation of c
 
 ---
 
-## UI/UX Requirements
+## 🧠 Features
 
-- The component should render a clean and **visually consistent preview** of each podcast.
-- Display:
-  - Podcast **cover image**
-  - Podcast **title**
-  - **Genre names**
-  - **Number of seasons**
-  - **Last updated** in a human-readable format
-- The component must be **responsive**, and match the overall app design on desktop and mobile.
-- On click, the component must notify the parent app to **open a modal** or navigate to details.
+### 🎙️ `<podcast-preview>` Web Component
+
+- Custom HTML element: `<podcast-preview>`.
+- Stateless: gets all data via attributes (`title`, `cover`, `seasons`, `genres`, `updated`, `id`).
+- Uses **Shadow DOM** for encapsulated template and styles.
+- Dispatches a `podcast-select` custom event on click with the podcast `id` and `title`.
+
+### 🎧 Landing Page
+
+- Renders a responsive grid of `<podcast-preview>` cards from static data.
+- Each card displays:
+  - Cover image
+  - Title
+  - Seasons count
+  - Genre names
+  - Last updated (human-readable)
+
+### 💬 Modal Details
+
+- The main app listens for `podcast-select` on the grid.
+- When a card is clicked, the app:
+  - Finds the selected podcast
+  - Builds a view model (genres, description, formatted date, seasons)
+  - Opens a modal with detailed information.
 
 ---
 
