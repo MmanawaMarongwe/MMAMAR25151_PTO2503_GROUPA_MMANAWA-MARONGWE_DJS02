@@ -1,3 +1,18 @@
+/**
+ * Custom Web Component for rendering a single podcast preview card.
+ *
+ * - Displays cover image, title, seasons, genres and last updated text.
+ * - Reads all data from attributes:
+ *   - title, cover, seasons, genres, updated, id/podcast-id
+ * Dispatches a "podcast-select" custom event on click so the main app
+ *
+ *
+ * @extends HTMLElement
+ * @fires CustomEvent<{
+ *   id: string,
+ *   title: string
+ * }>("podcast-select")
+ */
 class PodcastPreview extends HTMLElement {
   constructor() {
     super(); // always call this first in a custom element constructor
@@ -25,6 +40,11 @@ class PodcastPreview extends HTMLElement {
           border-radius: 16px;
           padding: 24px;
           margin-bottom: 8px;
+        }
+        
+        :host(:hover) {
+          background: #1a1f27;
+          transform: scale(1.01);
         }
 
         .card {
@@ -66,6 +86,33 @@ class PodcastPreview extends HTMLElement {
           font-size: 12px;
           border-radius: 12px;
         }
+
+        @media (min-width: 300px) and (max-width: 1023px) {
+          :host{
+            width: 320px;
+            background: var(--card-bg);
+            padding: 12px;
+          }
+
+            p {
+            font-size: 12px;
+          }
+  
+          h4 {
+             font-size: 16px;
+          }
+  
+          .pod-cover {
+              width: 310px;
+              height: 220px;
+              margin: 4px;
+          }
+  
+          .text-muted {
+            font-size: 12px;
+          }
+      }
+
 
       </style>
         <div class="card">

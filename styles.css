@@ -95,43 +95,6 @@ option {
   padding: 40px;
 }
 
-.cover {
-  width: 280px;
-  height: 250px;
-  border: var(--text-muted) 0.5px solid;
-}
-
-.card {
-  background: var(--card-bg);
-  border: var(--text-muted) 0.2px solid;
-  border-radius: 16px;
-  padding: 24px;
-  transition: all 0.3s ease-in-out;
-}
-
-.card:hover {
-  background: #1a1f27;
-  transform: scale(1.01);
-}
-
-.seasons-text {
-  color: var(--accent);
-}
-.genre-tags {
-  display: flex;
-  flex-direction: rows;
-  gap: 4px;
-  margin-bottom: 16pxs;
-}
-
-.tag {
-  color: var(--accent);
-  background-color: #161b22;
-  padding: 10px;
-  font-size: 12px;
-  border-radius: 12px;
-}
-
 .text-muted {
   color: var(--text-muted);
   font-size: 14px;
@@ -204,6 +167,7 @@ option {
   margin: 8px 0px 8px 0px;
   border-radius: 16px;
 }
+
 .episodes-count {
   color: var(--accent);
 }
@@ -264,16 +228,6 @@ option {
     flex-direction: column;
     padding: 8px;
     margin-top: 20px;
-  }
-  .cover {
-    width: 310px;
-    height: 200px;
-    margin: 4px;
-  }
-  .card {
-    width: 320px;
-    background: var(--card-bg);
-    padding: 12px;
   }
 
   .text-muted {
@@ -339,17 +293,6 @@ option {
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
     padding: 16px;
-  }
-
-  .cover {
-    width: 310px;
-    height: 200px;
-    margin: 4px;
-  }
-  .card {
-    width: 320px;
-    background: var(--card-bg);
-    padding: 14px;
   }
 
   .text-muted {
