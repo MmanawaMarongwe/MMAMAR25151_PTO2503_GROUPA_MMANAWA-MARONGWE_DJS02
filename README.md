@@ -1,10 +1,12 @@
-# DJS02 – Web Component: Podcast Preview
+# DJS02: Podcast Preview Web Component
 
 ## Overview
 
-In this project, you will build a reusable and encapsulated **custom HTML element** that displays a podcast preview. The component must follow the **Web Component standard**, using `customElements.define()` and should work independently from the main application logic. This component will enhance modularity, promote reuse, and reduce code duplication across the app.
+This project is a responsive podcast web application that uses a custom **Web Component** to render podcast previews.
 
-The component should be designed to **accept podcast data via attributes or properties**, display relevant UI elements (such as title, cover image, and genres), and **communicate with the main application** through custom events.
+Each podcast card is implemented as a `<podcast-preview>` element that follows the **Web Components** standard. The component is **stateless**, uses **Shadow DOM** for encapsulated styles and markup, and notifies the main application via a **custom event** when the user interacts with it.
+
+The rest of the app is structured with modular JavaScript, clean separation of concerns, and reusable utilities for data, view models, and modals.
 
 ---
 
