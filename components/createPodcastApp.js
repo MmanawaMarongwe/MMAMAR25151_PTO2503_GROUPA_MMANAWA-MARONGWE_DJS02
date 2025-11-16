@@ -38,7 +38,7 @@ export function createPodcastApp({ genres, podcasts, seasons, elements }) {
     card.setAttribute("cover", pod.image);
     card.setAttribute("seasons", pod.seasons);
     card.setAttribute("updated", pod.formattedUpdatedAt());
-    // card.genres = pod.genreNames();
+    card.setAttribute("genres", pod.genreNames());
 
     // Attach event listener to open modal
     card.addEventListener("click", () => {

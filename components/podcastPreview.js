@@ -52,6 +52,21 @@ class PodcastPreview extends HTMLElement {
           font-size: 14px;
         }
 
+        .genre-tags {
+          display: flex;
+          flex-direction: rows;
+          gap: 4px;
+          margin-bottom: 16pxs;
+        }
+
+        .tag {
+          color: var(--accent);
+          background-color: #161b22;
+          padding: 10px;
+          font-size: 12px;
+          border-radius: 12px;
+        }
+
       </style>
         <div class="card">
         <img id="cover" class="pod-cover" alt="">
@@ -100,6 +115,23 @@ class PodcastPreview extends HTMLElement {
 
     if (dateEl) {
       dateEl.textContent = `Last Updated ${dateFromAttribute}`;
+    }
+
+    if (genresEl) {
+      genresEl.innerHTML = "";
+      if (genresFromAttribute) {
+        const genresList = genresFromAttribute
+          .split(",")
+          .map((g) => g.trim())
+          .filter(Boolean);
+
+        genresList.forEach((genre) => {
+          const span = document.createElement("span");
+          span.className = "tag";
+          span.textContent = genre;
+          genresEl.appendChild(span);
+        });
+      }
     }
   }
 }
