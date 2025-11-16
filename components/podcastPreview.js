@@ -78,6 +78,8 @@ class PodcastPreview extends HTMLElement {
           </div>
         </div>
     `;
+
+    //custom event
   }
 
   // This runs when the element is added to the page
@@ -133,6 +135,21 @@ class PodcastPreview extends HTMLElement {
         });
       }
     }
+
+    this.addEventListener("click", () => {
+      const idFromAttribute = this.getAttribute("id") || "";
+
+      this.dispatchEvent(
+        new CustomEvent("podcast-select", {
+          bubbles: true,
+          composed: true,
+          detail: {
+            id: idFromAttribute,
+            title: titleFromAttribute,
+          },
+        })
+      );
+    });
   }
 }
 
