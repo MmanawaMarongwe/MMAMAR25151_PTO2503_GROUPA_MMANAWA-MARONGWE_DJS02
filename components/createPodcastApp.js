@@ -6,15 +6,15 @@ import { renderModal } from "./renderModal.js";
 /**
  * Sets up the podcast UI on the page.
  * - Fills the genre dropdown with options
- * - Builds one card per podcast and appends to the grid
- * - Add event listener to each card to open a modal with details on click
+ * - Builds one <podcast-preview> custom element per podcast and appends it to the grid
+ * - Listens for the "podcast-select" custom event on the grid to open a modal with details
  *
  * @param {Object} podcastObj
- * @param {{id:string,title:string}[]} podcastObj.genres - list of genre objects (id, title)
- * @param {Object[]} podcastObj.podcasts - raw podcast data from your data file
+ * @param {{id:number,title:string}[]} podcastObj.genres - list of genre objects (id, title)
+ * @param {Object[]} podcastObj.podcasts - raw podcast data from the data file
  * @param {Object[]} podcastObj.seasons - season data used by makePodcast to compute helpers
- * @param {{gDropdown:HTMLSelectElement,podGrid:HTMLElement,modalContainer:HTMLElement}} podcastObj.elements
- * @returns {{init:() => void}}
+ * @param {{gDropdown:HTMLSelectElement,podGrid:HTMLElement,modalContainer:HTMLElement}} podcastObj.elements - DOM elements used by the app
+ * @returns {{init:() => void}} init function to wire up event listeners
  */
 export function createPodcastApp({ genres, podcasts, seasons, elements }) {
   const { gDropdown, podGrid, modalContainer } = elements;
